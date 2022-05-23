@@ -1,13 +1,25 @@
 import datetime
+import sys
 
-from Amministrazione.Ricetta import Ricetta
+import datetime as datetime
+from PrenotazioneGUI import prenotazione
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication
+import datetime
 
+#from loginGUI import login
 
-x=datetime.datetime(year=1980, month=2, day=5)
-y=datetime.datetime.now()
-Ricetta.compilaRicetta(Ricetta, 'cacca','pipi','pupu',y)
-
-Ricetta.stampaRicetta(Ricetta)
-Ricetta.prova(Ricetta)
+app=QApplication(sys.argv)
+lista2=[]
+lista=([datetime.datetime.now(),datetime.datetime.now()])
+for giorno in lista:
+    lista2.append(giorno.strftime("%m/%d/%Y, %H:%M"))
+mainwindow=prenotazione(lista2)
+widget = QtWidgets.QStackedWidget()
+widget.addWidget(mainwindow)
+widget.setFixedHeight(400)
+widget.setFixedWidth(500)
+widget.show()
+app.exec_()
 
 
