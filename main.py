@@ -1,25 +1,26 @@
-import datetime
+from PyQt5 import *
+from PyQt5.QtWidgets import*
+from PyQt5.uic import *
 import sys
+from prova.selezionaVisita import selezionaVisita
+from prova.menuCliente import menuCliente
 
-import datetime as datetime
-from PrenotazioneGUI import prenotazione
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication
-import datetime
+class Login(QDialog):
 
-#from loginGUI import login
+    def __init__(self):
+        super(Login, self).__init__()
+        loadUi('Login.ui',self)
+
+    def loginFunction(self):
+        username=self.lineEdit.text()
+        password=self.lineEdit_2.text()
+        self.show()
+        #self.pushButton.clicked.connect(lambda :self.prova.stampa())
+        return username,password
 
 app=QApplication(sys.argv)
-lista2=[]
-lista=([datetime.datetime.now(),datetime.datetime.now()])
-for giorno in lista:
-    lista2.append(giorno.strftime("%m/%d/%Y, %H:%M"))
-mainwindow=prenotazione(lista2)
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(mainwindow)
-widget.setFixedHeight(400)
-widget.setFixedWidth(500)
-widget.show()
-app.exec_()
-
-
+form = menuCliente()
+form.prova()
+pag2 = selezionaVisita()
+form.pushButton.clicked.connect(lambda: pag2.stampa(form))
+sys.exit(app.exec_())
