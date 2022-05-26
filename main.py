@@ -1,9 +1,15 @@
+import datetime
+
 from PyQt5 import *
 from PyQt5.QtWidgets import*
 from PyQt5.uic import *
 import sys
-from prova.selezionaVisita import selezionaVisita
-from prova.menuCliente import menuCliente
+
+from PyQt5.uic import loadUi
+
+from GUI.MenuCliente import MenuCliente
+from GUI.PrenotazioneGUI import PrenotazioneGUI
+
 
 class Login(QDialog):
 
@@ -19,8 +25,8 @@ class Login(QDialog):
         return username,password
 
 app=QApplication(sys.argv)
-form = menuCliente()
-form.prova()
-pag2 = selezionaVisita()
-form.pushButton.clicked.connect(lambda: pag2.stampa(form))
+form = MenuCliente()
+form.NuovaPrenotazione()
+pag2 = PrenotazioneGUI(["datetime.datetime.now(),datetime.datetime.now()]", 'ue'])
+#form.pushButton.clicked.connect(lambda: pag2.stampa(form))
 sys.exit(app.exec_())
